@@ -1,0 +1,26 @@
+<div class="container" *ngIf="problem">
+
+  <div class="col-sm-12 col-md-4">
+    <div>
+      <h2>
+        {{problem.id}}. {{problem.name}}
+      </h2>
+      <p>
+        {{problem.desc}}
+      </p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [routerLink]="['/editProblem', problem.id]">
+      Edit
+    </button>
+    <button type="submit" class="btn btn-primary pull-right" routerLink="/problems">
+      Return
+    </button>
+    
+  </div>
+
+  <div class="hidden-xs col-sm-12 col-md-8">
+    <app-editor></app-editor>
+  </div>
+
+</div>
