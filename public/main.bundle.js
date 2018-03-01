@@ -870,16 +870,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var http_1 = __webpack_require__("../../../common/esm5/http.js");
 var BehaviorSubject_1 = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
-// import { PROBLEMS } from '../mock-problems';
 var DataService = /** @class */ (function () {
     function DataService(httpClient) {
         this.httpClient = httpClient;
-        // problems: Problem[] = PROBLEMS;
         this._problemSource = new BehaviorSubject_1.BehaviorSubject([]);
     }
     DataService.prototype.getProblems = function () {
         var _this = this;
-        // return this.problems;
         this.httpClient.get('api/v1/problems')
             .toPromise()
             .then(function (res) {
@@ -887,9 +884,14 @@ var DataService = /** @class */ (function () {
         })
             .catch(this.handleError);
         return this._problemSource.asObservable();
+        // this.httpClient.get<Problem[]>('api/v1/problems')
+        //   .subscribe(
+        //     res => this._problemSource.next(res),
+        //     this.handleError
+        //   );
+        // return this._problemSource.asObservable();      
     };
     DataService.prototype.getProblem = function (id) {
-        // return this.problems.find( (problem) => problem.id === id );
         return this.httpClient.get("api/v1/problems/" + id)
             .toPromise()
             .then(function (res) { return res; })
@@ -897,8 +899,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.addProblem = function (problem) {
         var _this = this;
-        // problem.id = this.problems.length + 1;
-        // this.problems.push(problem);
         var options = { headers: new http_1.HttpHeaders({ 'Connect-Type': 'application/json' }) };
         return this.httpClient.post('api/v1/problems', problem, options)
             .toPromise()

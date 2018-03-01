@@ -20,7 +20,15 @@ export class DataService {
       })
       .catch(this.handleError);
 
-      return this._problemSource.asObservable();
+    return this._problemSource.asObservable();
+
+    // this.httpClient.get<Problem[]>('api/v1/problems')
+    //   .subscribe(
+    //     res => this._problemSource.next(res),
+    //     this.handleError
+    //   );
+    
+    // return this._problemSource.asObservable();      
   }
 
   getProblem(id: number): Promise<Problem> {

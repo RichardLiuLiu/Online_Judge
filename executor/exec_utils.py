@@ -14,19 +14,23 @@ CONTAINER_NAME = "%s:latest" % IMAGE_NAME
 
 SOURCE_FILE_NAMES = {
     "java": "Example.java",
-    "python": "example.py"
+    "python": "example.py",
+    "c++": "example.cpp"
 }
 BINARY_NAMES = {
     "java": "Example",
-    "python": "example.py"
+    "python": "example.py",
+    "c++": "./a.out"
 }
 BUILD_COMMANDS = {
     "java": "javac",
-    "python": "python3"
+    "python": "python3",
+    "c++": "g++"
 }
 EXECUTE_COMMANDS = {
     "java": "java",
     "python": "python3",
+    "c++": ""
 }
 
 def load_image():

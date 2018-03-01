@@ -22,3 +22,6 @@ def build_and_run():
 if __name__ == '__main__':
     eu.load_image()
     app.run(debug=True)
+    # import sys
+    # port = int(sys.argv[1])
+    # app.run(port=port)
