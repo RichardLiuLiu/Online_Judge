@@ -52,6 +52,7 @@ router.post('/build_and_run', jsonParser, (req, res) => {
             const build = `${data['build']}`;         
             const run = `${data['run']}`;
             build == 'OK' ? res.json(run) : res.json(build);
+	    // res.json(whole_res)
         }
     )
 });
