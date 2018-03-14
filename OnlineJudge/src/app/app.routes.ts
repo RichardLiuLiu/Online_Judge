@@ -4,12 +4,17 @@ import { ProblemListComponent } from './components/problem-list/problem-list.com
 import { ProblemDetailComponent } from './components/problem-detail/problem-detail.component';
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
 import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'problems',
         pathMatch: 'full'
+    },
+    {
+        path: 'loading',
+        component: LoadingComponent
     },
     {
         path: 'problems',

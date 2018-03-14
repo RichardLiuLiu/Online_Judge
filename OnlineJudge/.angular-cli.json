@@ -30,7 +30,8 @@
         "../node_modules/ace-builds/src-min-noconflict/mode-java.js",
         "../node_modules/ace-builds/src-min-noconflict/mode-python.js",
         "../node_modules/ace-builds/src-min-noconflict/mode-c_cpp.js",
-        "../node_modules/socket.io-client/dist/socket.io.js"
+        "../node_modules/socket.io-client/dist/socket.io.js",
+        "../node_modules/auth0-js/build/auth0.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

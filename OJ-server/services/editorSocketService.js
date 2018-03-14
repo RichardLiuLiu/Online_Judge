@@ -2,8 +2,7 @@ var redisClient = require('../modules/redisClient');
 const TIME_IN_SECONDS = 3600;
 
 module.exports = function(io) {
-
-    var sessionPath = '/temp_sessions'
+    var sessionPath = '/temp_sessions';
 
     var collaborations = {};
     var socketId2sessionId = {};
@@ -12,14 +11,6 @@ module.exports = function(io) {
         let sessionId = socket.handshake.query['sessionId'];
 
         socketId2sessionId[socket.id] = sessionId;
-
-        // if (!(sessionId in collaborations)) {
-        //     collaborations[sessionId] = {
-        //         'participants': []
-        //     };
-        //     numSession++;
-        //     socket.emit("counter", numSession);
-        // }
 
         if (sessionId in collaborations) {
             collaborations[sessionId]['participants'].push(socket.id);
@@ -107,10 +98,5 @@ module.exports = function(io) {
             }
         });
     });
-
-    // io.on('connection', (socket) => {
-    //     numSession--;
-    //     socket.emit("counter", numSession);
-    // });
 
 };

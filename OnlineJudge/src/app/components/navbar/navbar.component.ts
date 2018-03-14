@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/debounceTime';
 import { SearchInputService } from '../../services/search-input.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,15 +22,21 @@ export class NavbarComponent implements OnInit {
   difficulties: string[] = ['easy', 'medium', 'hard', 'ultimate'];
 
   constructor(private inputService: SearchInputService,
-              private router: Router) { }
+              private router: Router,
+              public auth: AuthService) {
+                auth.handleAuthentication();
+}
 
   ngOnInit() {
-    // this.subscription = this.searchBox
-    //                         .valueChanges
-    //                         .debounceTime(200)
-    //                         .subscribe(term => {
-    //                           this.inputService.changeInput(term);
-    //                         });
+
+    console.log(this.auth.isAuthenticated());
+
+    this.subscription = this.searchBox
+                            .valueChanges
+                            .debounceTime(200)
+                            .subscribe(term => {
+                              this.inputService.changeInput(term);
+                            });
   }
 
   ngOnDestroy() {

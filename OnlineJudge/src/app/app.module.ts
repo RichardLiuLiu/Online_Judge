@@ -19,6 +19,8 @@ import { UserNumberComponent } from './components/user-number/user-number.compon
 import { SearchInputService } from './services/search-input.service';
 import { SearchPipe } from './pipes/search.pipe';
 import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
+import { AuthService } from './services/auth.service';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { EditProblemComponent } from './components/edit-problem/edit-problem.com
     EditorComponent,
     UserNumberComponent,
     SearchPipe,
-    EditProblemComponent
+    EditProblemComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { EditProblemComponent } from './components/edit-problem/edit-problem.com
   providers: [
     DataService,
     CollaborationService,
-    SearchInputService
+    SearchInputService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
