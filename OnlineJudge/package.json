@@ -28,6 +28,7 @@
     "jquery": "^3.3.1",
     "rxjs": "^5.5.6",
     "socket.io": "^2.0.4",
+    "ssri": "^5.3.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
