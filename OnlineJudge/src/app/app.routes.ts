@@ -5,6 +5,7 @@ import { ProblemDetailComponent } from './components/problem-detail/problem-deta
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
 import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -15,6 +16,10 @@ const routes: Routes = [
     {
         path: 'loading',
         component: LoadingComponent
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent
     },
     {
         path: 'problems',

@@ -21,6 +21,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
 import { AuthService } from './services/auth.service';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     UserNumberComponent,
     SearchPipe,
     EditProblemComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

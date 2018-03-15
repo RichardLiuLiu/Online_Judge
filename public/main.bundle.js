@@ -105,6 +105,7 @@ var search_pipe_1 = __webpack_require__("../../../../../src/app/pipes/search.pip
 var edit_problem_component_1 = __webpack_require__("../../../../../src/app/components/edit-problem/edit-problem.component.ts");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var loading_component_1 = __webpack_require__("../../../../../src/app/components/loading/loading.component.ts");
+var profile_component_1 = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -120,7 +121,8 @@ var AppModule = /** @class */ (function () {
                 user_number_component_1.UserNumberComponent,
                 search_pipe_1.SearchPipe,
                 edit_problem_component_1.EditProblemComponent,
-                loading_component_1.LoadingComponent
+                loading_component_1.LoadingComponent,
+                profile_component_1.ProfileComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -157,6 +159,7 @@ var problem_detail_component_1 = __webpack_require__("../../../../../src/app/com
 var new_problem_component_1 = __webpack_require__("../../../../../src/app/components/new-problem/new-problem.component.ts");
 var edit_problem_component_1 = __webpack_require__("../../../../../src/app/components/edit-problem/edit-problem.component.ts");
 var loading_component_1 = __webpack_require__("../../../../../src/app/components/loading/loading.component.ts");
+var profile_component_1 = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
 var routes = [
     {
         path: '',
@@ -166,6 +169,10 @@ var routes = [
     {
         path: 'loading',
         component: loading_component_1.LoadingComponent
+    },
+    {
+        path: 'profile',
+        component: profile_component_1.ProfileComponent
     },
     {
         path: 'problems',
@@ -475,7 +482,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-static-top navbar-inverse\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"#\">\n            <font color=\"#ffffff\"><b>myLeetCode</b></font>\n        </a>\n      </div>\n  \n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav\">\n\n          <li class=\"active\">\n            <a href=\"#\" routerLink=\"/problems\">\n              Problems <span class=\"sr-only\">(current)</span>\n            </a>\n          </li>\n\n          <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              Difficulty <span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li>\n                <a *ngFor = \"let difficulty of difficulties\">\n                  {{difficulty}}\n                </a>\n              </li>\n            </ul>\n          </li>\n\n          <li><a routerLink=\"/newProblem\">Add Problem</a></li>\n          <!-- <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              Manage <span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li><a routerLink=\"/newProblem\">Add problems</a></li>\n              <li><a>Edit problems</a></li>\n              <li><a>Delete problems</a></li>\n            </ul>\n          </li> -->\n\n        </ul>\n\n        <form class=\"navbar-form navbar-left\" (ngSubmit)=\"searchProblems()\">\n          <div class=\"form-group\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Please enter keywords\"\n              [formControl]=\"searchBox\" [(ngModel)]=\"searchInput\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-default\" (click)=\"searchProblems_btn()\">\n              Search\n          </button>\n        </form>\n\n        <!-- <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              My Account<span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li><a href=\"#\">Profile</a></li>\n              <li><a href=\"#\">Settings</a></li>\n              <li role=\"separator\" class=\"divider\"></li>\n              <li><a href=\"#\">Sign out</a></li>\n            </ul>\n          </li>\n        </ul> -->\n\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a (click)=\"auth.login()\" *ngIf=\"!auth.isAuthenticated()\">Login</a></li>\n          <li><a (click)=\"auth.login()\" *ngIf=\"auth.isAuthenticated()\">Profile</a></li>\n          <li><a (click)=\"auth.logout()\" *ngIf=\"auth.isAuthenticated()\">Logout</a></li>\n        </ul>\n\n      </div>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-static-top navbar-inverse\">\n    <div class=\"container-fluid\">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"#\">\n            <font color=\"#ffffff\"><b>myLeetCode</b></font>\n        </a>\n      </div>\n  \n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav\">\n\n          <li class=\"active\">\n            <a href=\"#\" routerLink=\"/problems\">\n              Problems <span class=\"sr-only\">(current)</span>\n            </a>\n          </li>\n\n          <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              Difficulty <span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li>\n                <a *ngFor = \"let difficulty of difficulties\">\n                  {{difficulty}}\n                </a>\n              </li>\n            </ul>\n          </li>\n\n          <li><a routerLink=\"/newProblem\">Add Problem</a></li>\n          <!-- <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              Manage <span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li><a routerLink=\"/newProblem\">Add problems</a></li>\n              <li><a>Edit problems</a></li>\n              <li><a>Delete problems</a></li>\n            </ul>\n          </li> -->\n\n        </ul>\n\n        <form class=\"navbar-form navbar-left\" (ngSubmit)=\"searchProblems()\">\n          <div class=\"form-group\">\n            <input type=\"text\" class=\"form-control\" placeholder=\"Please enter keywords\"\n              [formControl]=\"searchBox\" [(ngModel)]=\"searchInput\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-default\" (click)=\"searchProblems_btn()\">\n              Search\n          </button>\n        </form>\n\n        <!-- <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"dropdown\">\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              My Account<span class=\"caret\"></span>\n            </a>\n            <ul class=\"dropdown-menu\">\n              <li><a href=\"#\">Profile</a></li>\n              <li><a href=\"#\">Settings</a></li>\n              <li role=\"separator\" class=\"divider\"></li>\n              <li><a href=\"#\">Sign out</a></li>\n            </ul>\n          </li>\n        </ul> -->\n\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li><a (click)=\"auth.login()\" *ngIf=\"!auth.isAuthenticated()\">Login</a></li>\n          <li><a routerLink=\"/profile\" *ngIf=\"auth.isAuthenticated()\">Profile</a></li>\n          <li><a (click)=\"auth.logout()\" *ngIf=\"auth.isAuthenticated()\">Logout</a></li>\n        </ul>\n\n      </div>\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -780,6 +787,78 @@ exports.ProblemListComponent = ProblemListComponent;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/profile/profile.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".profile-area img {\n    max-width: 150px;\n    margin-bottom: 20px;\n}\n  \n.panel-body h3 {\n    margin-top: 0;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/profile/profile.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default profile-area\">\n  <div class=\"panel-heading\">\n    <h2>Profile</h2>\n  </div>\n  <div class=\"panel-body\">\n    <img src=\"{{profile?.picture}}\" class=\"avatar\" alt=\"avatar\">\n    <div>\n      <label><i class=\"glyphicon glyphicon-user\"></i> Nickname</label>\n      <h3 class=\"nickname\">{{ profile?.nickname }}</h3>\n    </div>\n    <pre class=\"full-profile\">{{ profile | json }}</pre>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/profile/profile.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent(auth) {
+        this.auth = auth;
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.auth.userProfile) {
+            this.profile = this.auth.userProfile;
+        }
+        else {
+            this.auth.getProfile(function (err, profile) {
+                _this.profile = profile;
+            });
+        }
+    };
+    ProfileComponent = __decorate([
+        core_1.Component({
+            selector: 'app-profile',
+            template: __webpack_require__("../../../../../src/app/components/profile/profile.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/profile/profile.component.css")]
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService])
+    ], ProfileComponent);
+    return ProfileComponent;
+}());
+exports.ProfileComponent = ProfileComponent;
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user-number/user-number.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -905,6 +984,19 @@ var AuthService = /** @class */ (function () {
             scope: 'openid profile'
         });
     }
+    AuthService.prototype.getProfile = function (cb) {
+        var accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+            throw new Error('Access Token must exist to fetch profile');
+        }
+        var self = this;
+        this.auth0.client.userInfo(accessToken, function (err, profile) {
+            if (profile) {
+                self.userProfile = profile;
+            }
+            cb(err, profile);
+        });
+    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };

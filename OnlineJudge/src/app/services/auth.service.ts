@@ -15,12 +15,31 @@ export class AuthService {
     scope: 'openid profile'
   });
 
+  userProfile: any;
+
   constructor(public router: Router) {}
+
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access Token must exist to fetch profile');
+    }
+  
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
+  }
+
 
   public login(): void {
     this.auth0.authorize();
   }
 
+  
   public handleAuthentication(): void {
     console.log("calling");
     this.auth0.parseHash((err, authResult) => {
@@ -36,6 +55,7 @@ export class AuthService {
     });
   }
 
+
   private setSession(authResult): void {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
@@ -43,6 +63,7 @@ export class AuthService {
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
   }
+
 
   public logout(): void {
     // Remove tokens and expiry time from localStorage
@@ -52,6 +73,7 @@ export class AuthService {
     // Go back to the home route
     this.router.navigate(['/']);
   }
+
 
   public isAuthenticated(): boolean {
     // Check whether the current time is past the
