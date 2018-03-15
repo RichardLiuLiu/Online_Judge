@@ -11,7 +11,7 @@ export class AuthService {
     domain: 'auth-yicong.auth0.com',
     responseType: 'token id_token',
     audience: 'https://auth-yicong.auth0.com/userinfo',
-    redirectUri: '/loading',
+    redirectUri: "http://" + window.location.hostname + ":3000" + "/loading",
     scope: 'openid profile'
   });
 
